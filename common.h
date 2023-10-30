@@ -1,5 +1,6 @@
 #include <queue>
 #include <pthread.h>
+#include <fstream>
 
 using namespace std;
 
@@ -9,18 +10,13 @@ extern int numAsk;
 extern int numReceive;
 extern int numComplete;
 
-queue<int> workQueue; // Queue to hold tasks
-pthread_mutex_t queueMutex = PTHREAD_MUTEX_INITIALIZER; // Mutex for queue synchronization
-pthread_cond_t queueCondVar = PTHREAD_COND_INITIALIZER; // Condition variable for queue synchronization
-pthread_mutex_t logMutex;
+extern queue<int> workQueue;
+extern pthread_mutex_t queueMutex;
+extern pthread_cond_t queueCondVar;
+extern pthread_mutex_t logMutex;
 extern ofstream logFile;
+extern size_t maxQueueSize;  // Changed type to size_t
 
-
-int maxQueueSize;
-
-void InitializeQueue(int numberOfConsumers) {
-    maxQueueSize = 2 * numberOfConsumers;
-}
-
+void InitializeQueue(int numberOfConsumers);
 void* consumerFunction(void* arg);
 void producerFunction();

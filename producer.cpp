@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <fstream>
 #include "common.h"
 #include "tands.h"
 
@@ -8,8 +7,6 @@ using namespace std;
 
 void producerFunction() {
     string command;
-    int totalWorkCommands = 0;
-    int totalSleepCommands = 0;
 
     while(cin >> command) {
         char cmdType = command[0];

@@ -1,10 +1,27 @@
 #include <iostream>
 #include <pthread.h>
-#include <fstream>
 #include "common.h"
 
 
 using namespace std;
+
+int totalWorkCommands = 0;
+int totalSleepCommands = 0;
+int numAsk = 0;
+int numReceive = 0;
+int numComplete = 0;
+
+queue<int> workQueue;
+pthread_mutex_t queueMutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t queueCondVar = PTHREAD_COND_INITIALIZER;
+pthread_mutex_t logMutex = PTHREAD_MUTEX_INITIALIZER;
+ofstream logFile;
+
+size_t maxQueueSize = 0;  // Changed type to size_t
+
+void InitializeQueue(int numberOfConsumers) {
+    maxQueueSize = 2 * numberOfConsumers;
+}
 
 
 int main(int argc, char* argv[]) {
@@ -31,7 +48,7 @@ int main(int argc, char* argv[]) {
     // Create the consumer pthreads
     pthread_t* consumerThreads = new pthread_t[numberOfConsumers]; // creating an array of thread identifiers (store in heap)
     for (int i = 0; i < numberOfConsumers; ++i) {
-        pthread_create(&consumerThreads[i], NULL, consumerFunction, (void*) i+1); // create actual consumer threads for each thread identifier
+        pthread_create(&consumerThreads[i], NULL, consumerFunction, (void*) (intptr_t)(i+1)); // create actual consumer threads for each thread identifier
     }
 
     producerFunction();

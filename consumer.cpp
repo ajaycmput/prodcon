@@ -1,13 +1,8 @@
 #include <iostream>
-#include <fstream>
 #include "common.h"
 #include "tands.h"
 
 using namespace std;
-
-int numAsk = 0;
-int numReceive = 0;
-int numComplete = 0;
 
 void* consumerFunction(void* arg) {
     // retrieve consumer ID and freeing dynamically allocated memory
