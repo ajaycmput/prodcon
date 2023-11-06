@@ -1,0 +1,51 @@
+ID= 0 Q= 1 Work 4
+ID= 0 Q= 2 Work 2
+ID= 0 Q= 3 Work 1
+ID= 3 Ask
+ID= 3 Q= 2 Receive 4
+ID= 0 Q= 3 Work 1
+ID= 2 Ask
+ID= 2 Q= 2 Receive 2
+ID= 1 Ask
+ID= 1 Q= 1 Receive 1
+ID= 1 Complete 1
+ID= 1 Ask
+ID= 1 Q= 0 Receive 1
+ID= 4 Ask
+ID= 2 Complete 2
+ID= 1 Complete 1
+ID= 5 Ask
+ID= 2 Ask
+ID= 1 Ask
+ID= 3 Complete 4
+ID= 3 Ask
+ID= 0 Sleep 9
+ID= 0 Q= 1 Work 5
+ID= 2 Q= 0 Receive 5
+ID= 2 Complete 5
+ID= 2 Ask
+ID= 0 Sleep 1
+ID= 0 Q= 1 Work 1
+ID= 0 Q= 2 Work 1
+ID= 0 Q= 3 Work 1
+ID= 5 Q= 2 Receive 1
+ID= 1 Q= 1 Receive 1
+ID= 4 Q= 0 Receive 1
+ID= 5 Complete 1
+ID= 5 Ask
+ID= 1 Complete 1
+ID= 1 Ask
+ID= 4 Complete 1
+ID= 4 Ask
+Summary:
+Work 8
+Ask 13
+Receive 8
+Complete 8
+Sleep 2
+Thread 1 completed 0 transactions
+Thread 2 completed 0 transactions
+Thread 3 completed 0 transactions
+Thread 4 completed 0 transactions
+Thread 5 completed 0 transactions
+Transactions per second: inf

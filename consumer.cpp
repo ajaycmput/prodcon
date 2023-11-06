@@ -8,6 +8,7 @@ void* consumerFunction(void* arg) {
     // retrieve consumer ID and freeing dynamically allocated memory
     int id = *(int*) arg;
     delete (int*) arg;
+    int workCount = 0;
 
     while(true) {
         pthread_mutex_lock(&queueMutex);
@@ -17,8 +18,13 @@ void* consumerFunction(void* arg) {
         numAsk++;
         pthread_mutex_unlock(&logMutex);
 
-        while(workQueue.empty()) {
+        while(workQueue.empty() && !producerFinished) {
             pthread_cond_wait(&queueCondVar, &queueMutex);
+        }
+
+        if (workQueue.empty() && producerFinished) {
+            pthread_mutex_unlock(&queueMutex);
+            break;
         }
 
         // take task from the front of the queue
@@ -39,6 +45,8 @@ void* consumerFunction(void* arg) {
         logFile << "ID= " << id << " Complete " << work << endl;
         numComplete++;
         pthread_mutex_unlock(&logMutex);
+
+        workCount++;
     }
 
     return NULL;

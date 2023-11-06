@@ -1,6 +1,7 @@
 #include <queue>
 #include <pthread.h>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -9,6 +10,8 @@ extern int totalSleepCommands;
 extern int numAsk;
 extern int numReceive;
 extern int numComplete;
+extern vector<int> threadWorkCount;
+extern bool producerFinished;
 
 extern queue<int> workQueue;
 extern pthread_mutex_t queueMutex;

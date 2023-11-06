@@ -37,7 +37,9 @@ void producerFunction() {
         }
     }
     // Signal to consumers that producton is done
-    // ...
+    
+    producerFinished = true;
+    pthread_cond_broadcast(&queueCondVar);
 
 
 }
